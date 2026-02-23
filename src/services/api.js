@@ -1,12 +1,14 @@
-const BASE_API = "http://localhost:50000/products"
+const BASE_API = import.meta.env.VITE_API_URL || "http://localhost:50000/products";
 
 const getProducts = async (token, filters = {}) => {
   let url = `${BASE_API}`;
 
    const queryParams = new URLSearchParams(filters).toString();
+
   if (queryParams) {
     url += `?${queryParams}`;
   }
+
   const res = await fetch(url, {
     method: "GET",
     headers: {
