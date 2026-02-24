@@ -1,4 +1,4 @@
-const BASE_API = import.meta.env.VITE_API_URL || "http://localhost:50000/products";npm
+const BASE_API = import.meta.env.VITE_API_URL || "https://luisina-api-backend-utn.vercel.app/products";npm
 
 const getProducts = async (token, filters = {}) => {
   let url = `${BASE_API}`;

@@ -27,8 +27,8 @@ El frontend gestiona la seguridad de la siguiente manera:
 
 ## 🔌 Conexión con la API
 La comunicación con el servidor se realiza mediante los siguientes puntos de acceso:
-* **Auth:** `http://localhost:50000/auth`
-* **Productos:** `http://localhost:50000/products`
+* **Auth:** `https://luisina-api-backend-utn.vercel.app/auth`
+* **Productos:** `https://luisina-api-backend-utn.vercel.app/products`
 
 > **Nota:** Todas las peticiones a productos incluyen el encabezado `Authorization: Bearer ${token}`.
 

@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react"
 
 const AuthContext = createContext()
 
-const BASE_API = "http://localhost:50000/auth"
+const BASE_API = "https://luisina-api-backend-utn.vercel.app/auth"
 
 
 const AuthProvider = ({ children }) => {
