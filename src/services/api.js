@@ -1,9 +1,9 @@
-const BASE_API = import.meta.env.VITE_API_URL || "https://luisina-api-backend-utn.vercel.app/products";npm
+const BASE_API = import.meta.env.VITE_API_URL || "https://luisina-api-backend-utn.vercel.app";
 
 const getProducts = async (token, filters = {}) => {
-  let url = `${BASE_API}`;
+  let url = `${BASE_API}/products`;
 
-   const queryParams = new URLSearchParams(filters).toString();
+  const queryParams = new URLSearchParams(filters).toString();
 
   if (queryParams) {
     url += `?${queryParams}`;
@@ -20,7 +20,7 @@ const getProducts = async (token, filters = {}) => {
 }
 
 const createProduct = async (productData, token) => {
-  const res = await fetch(`${BASE_API}`, {
+  const res = await fetch(`${BASE_API}/products`, {
     method: "POST",
     headers: {
       Authorization: "Bearer " + token,
@@ -33,7 +33,7 @@ const createProduct = async (productData, token) => {
 }
 
 const updateProduct = async (editingProduct, updates, token) => {
-  const res = await fetch(`${BASE_API}/${editingProduct._id}`, {
+  const res = await fetch(`${BASE_API}/products/${editingProduct._id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -46,7 +46,7 @@ const updateProduct = async (editingProduct, updates, token) => {
 }
 
 const deleteProduct = async (id, token) => {
-  const res = await fetch(`${BASE_API}/${id}`, {
+  const res = await fetch(`${BASE_API}/products/${id}`, {
     method: "DELETE",
     headers: {
       Authorization: "Bearer " + token
