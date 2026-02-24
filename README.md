@@ -1,16 +1,43 @@
-# React + Vite
+# 💻 Catálogo de Productos - Frontend Client
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este repositorio contiene la interfaz de usuario desarrollada en React para la gestión de productos y autenticación de usuarios, integrada con una API REST profesional.
 
-Currently, two official plugins are available:
+## 🛠️ Tecnologías y Librerías
+* **Framework:** React.js (Vite)
+* **Enrutamiento:** React Router (BrowserRouter, Routes, Navigate)
+* **Peticiones HTTP:** Fetch API (Nativo)
+* **Notificaciones:** SweetAlert2 (vía `generatePopup`)
+* **Estilos:** CSS Modules e Inline Styles
+* **Documentación IA:** DeepWiki
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🏗️ Estructura del Proyecto
+La arquitectura se organiza en componentes modulares y servicios centralizados:
 
-## React Compiler
+* **Páginas (`src/pages/`):** Login, Register, Home (Catálogo), About y NotFound.
+* **Componentes Globales:** * `Header`: Navegación condicional basada en el estado del usuario.
+    * `ProtectedRoute`: Componente de orden superior para restringir acceso a rutas privadas.
+* **Contexto (`AuthContext`):** Gestión global de la autenticación y persistencia del usuario.
+* **Servicios (`src/services/api.js`):** Funciones CRUD optimizadas para interactuar con los endpoints de productos.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🔑 Sistema de Autenticación (JWT)
+El frontend gestiona la seguridad de la siguiente manera:
+1.  **Persistencia:** El token JWT se almacena en `localStorage` bajo la clave `'token'`.
+2.  **Estado Global:** El hook `useAuth()` expone funciones para login, registro y logout en toda la app.
+3.  **Seguridad:** Si no se detecta un token válido, el componente `ProtectedRoute` redirige automáticamente al usuario hacia `/login`.
 
-## Expanding the ESLint configuration
+## 🔌 Conexión con la API
+La comunicación con el servidor se realiza mediante los siguientes puntos de acceso:
+* **Auth:** `http://localhost:50000/auth`
+* **Productos:** `http://localhost:50000/products`
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+> **Nota:** Todas las peticiones a productos incluyen el encabezado `Authorization: Bearer ${token}`.
+
+## 📌 Principales Librerías y Usos
+| Librería | Propósito |
+| :--- | :--- |
+| **React** | Construcción de la UI mediante Hooks (useState, useEffect, useContext). |
+| **React Router** | Gestión de navegación y protección de rutas. |
+| **SweetAlert2** | Feedback visual para confirmaciones, éxitos y errores. |
+| **Fetch API** | Cliente nativo para el intercambio de datos con el Backend. |
+ 
+**[Ver Wiki del Frontend en DeepWiki] https://deepwiki.com/luisinavinuela/luisina-frontend-utn **
