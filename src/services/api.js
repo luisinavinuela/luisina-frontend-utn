@@ -1,13 +1,10 @@
-const BASE_API = import.meta.env.VITE_API_URL || "https://luisina-api-backend-utn.vercel.app";
+const BASE_API = "https://luisina-api-backend-utn.vercel.app";
+
+// --- PRODUCTOS ---
 
 const getProducts = async (token, filters = {}) => {
-  let url = `${BASE_API}/products`;
-
   const queryParams = new URLSearchParams(filters).toString();
-
-  if (queryParams) {
-    url += `?${queryParams}`;
-  }
+  const url = queryParams ? `${BASE_API}/products?${queryParams}` : `${BASE_API}/products`;
 
   const res = await fetch(url, {
     method: "GET",
@@ -27,9 +24,9 @@ const createProduct = async (productData, token) => {
       "Content-Type": "application/json"
     },
     body: JSON.stringify(productData)
-  })
+  });
 
-  return res
+  return res;
 }
 
 const updateProduct = async (editingProduct, updates, token) => {
@@ -40,9 +37,9 @@ const updateProduct = async (editingProduct, updates, token) => {
       Authorization: "Bearer " + token
     },
     body: JSON.stringify(updates)
-  })
+  });
 
-  return res
+  return res;
 }
 
 const deleteProduct = async (id, token) => {
@@ -51,8 +48,39 @@ const deleteProduct = async (id, token) => {
     headers: {
       Authorization: "Bearer " + token
     }
-  })
-  return res
+  });
+  return res;
 }
 
-export { getProducts, createProduct, updateProduct, deleteProduct }
+// --- AUTENTICACIÓN (Importante para que funcione el registro) ---
+
+const registerUser = async (userData) => {
+  const res = await fetch(`${BASE_API}/auth/register`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(userData)
+  });
+  return res;
+};
+
+const loginUser = async (userData) => {
+  const res = await fetch(`${BASE_API}/auth/login`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(userData)
+  });
+  return res;
+};
+
+export { 
+  getProducts, 
+  createProduct, 
+  updateProduct, 
+  deleteProduct, 
+  registerUser, 
+  loginUser 
+};
