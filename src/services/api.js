@@ -1,6 +1,5 @@
 const BASE_API = "https://luisina-api-backend-utn.vercel.app";
 
-// --- PRODUCTOS ---
 
 const getProducts = async (token, filters = {}) => {
   const queryParams = new URLSearchParams(filters).toString();
@@ -52,7 +51,6 @@ const deleteProduct = async (id, token) => {
   return res;
 }
 
-// --- AUTENTICACIÓN (Importante para que funcione el registro) ---
 
 const registerUser = async (userData) => {
   const res = await fetch(`${BASE_API}/auth/register`, {
